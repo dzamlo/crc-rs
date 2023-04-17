@@ -3,7 +3,7 @@ use crate::table::crc16_table;
 use crate::{Algorithm, Bytewise, Crc, Digest};
 
 impl Crc<Bytewise<u16>> {
-    pub const fn new(algorithm: &'static Algorithm<u16>) -> Self {
+    pub const fn new(algorithm: Algorithm<u16>) -> Self {
         let table = crc16_table(algorithm.width, algorithm.poly, algorithm.refin);
         Self { algorithm, table }
     }

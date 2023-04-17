@@ -3,7 +3,7 @@ use crate::{Algorithm, Crc, Digest, NoTable};
 use super::{finalize, init, update_nolookup};
 
 impl Crc<NoTable<u64>> {
-    pub const fn new(algorithm: &'static Algorithm<u64>) -> Self {
+    pub const fn new(algorithm: Algorithm<u64>) -> Self {
         Self {
             algorithm,
             table: (),

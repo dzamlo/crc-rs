@@ -16,7 +16,7 @@ edition = "2021"
 rust-version = "1.56"
 
 [dependencies]
-crc-catalog = "2.1.0"
+crc-catalog = {git="https://github.com/dzamlo/crc-catalog.git"}
 
 [dev-dependencies]
 criterion = { version = "0.4" }

@@ -5,7 +5,7 @@ use crate::{Algorithm, Crc, Digest};
 use super::update_slice16;
 
 impl Crc<u8> {
-    pub const fn new(algorithm: &'static Algorithm<u8>) -> Self {
+    pub const fn new(algorithm: Algorithm<u8>) -> Self {
         let table = crc8_table_slice_16(algorithm.width, algorithm.poly, algorithm.refin);
         Self { algorithm, table }
     }

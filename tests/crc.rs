@@ -44,7 +44,7 @@ fn crc_8() {
         CRC_8_WCDMA,
     ];
     for alg in algs.iter() {
-        let crc = Crc::<u8>::new(alg);
+        let crc = Crc::<u8>::new(*alg);
         assert_eq!(alg.check, crc.checksum(INIT));
         let mut digest = crc.digest();
         digest.update(INIT_PART1);
@@ -102,7 +102,7 @@ fn crc_16() {
         CRC_16_XMODEM,
     ];
     for alg in algs.iter() {
-        let crc = Crc::<u16>::new(alg);
+        let crc = Crc::<u16>::new(*alg);
         assert_eq!(alg.check, crc.checksum(INIT));
         let mut digest = crc.digest();
         digest.update(INIT_PART1);
@@ -139,7 +139,7 @@ fn crc_32() {
         CRC_32_XFER,
     ];
     for alg in algs {
-        let crc = Crc::<u32>::new(alg);
+        let crc = Crc::<u32>::new(*alg);
         assert_eq!(alg.check, crc.checksum(INIT));
         let mut digest = crc.digest();
         digest.update(INIT_PART1);
@@ -158,7 +158,7 @@ fn crc_64() {
         CRC_64_XZ,
     ];
     for alg in algs {
-        let crc = Crc::<u64>::new(alg);
+        let crc = Crc::<u64>::new(*alg);
         assert_eq!(alg.check, crc.checksum(INIT));
         let mut digest = crc.digest();
         digest.update(INIT_PART1);
@@ -171,7 +171,7 @@ fn crc_64() {
 fn crc_128() {
     let algs = &[CRC_82_DARC];
     for alg in algs {
-        let crc = Crc::<u128>::new(alg);
+        let crc = Crc::<u128>::new(*alg);
         assert_eq!(alg.check, crc.checksum(INIT));
         let mut digest = crc.digest();
         digest.update(INIT_PART1);

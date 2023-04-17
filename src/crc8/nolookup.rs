@@ -2,7 +2,7 @@ use crate::crc8::{finalize, init, update_nolookup};
 use crate::{Algorithm, Crc, Digest, NoTable};
 
 impl Crc<NoTable<u8>> {
-    pub const fn new(algorithm: &'static Algorithm<u8>) -> Self {
+    pub const fn new(algorithm: Algorithm<u8>) -> Self {
         Self {
             algorithm,
             table: (),

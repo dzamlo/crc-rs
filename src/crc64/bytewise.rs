@@ -4,7 +4,7 @@ use crate::{Algorithm, Bytewise, Crc, Digest};
 use super::{finalize, init, update_bytewise};
 
 impl Crc<Bytewise<u64>> {
-    pub const fn new(algorithm: &'static Algorithm<u64>) -> Self {
+    pub const fn new(algorithm: Algorithm<u64>) -> Self {
         let table = crc64_table(algorithm.width, algorithm.poly, algorithm.refin);
         Self { algorithm, table }
     }

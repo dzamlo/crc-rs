@@ -7,7 +7,7 @@ mod default;
 mod nolookup;
 mod slice16;
 
-const fn init(algorithm: &Algorithm<u128>, initial: u128) -> u128 {
+const fn init(algorithm: Algorithm<u128>, initial: u128) -> u128 {
     if algorithm.refin {
         initial.reverse_bits() >> (128u8 - algorithm.width)
     } else {
@@ -15,7 +15,7 @@ const fn init(algorithm: &Algorithm<u128>, initial: u128) -> u128 {
     }
 }
 
-const fn finalize(algorithm: &Algorithm<u128>, mut crc: u128) -> u128 {
+const fn finalize(algorithm: Algorithm<u128>, mut crc: u128) -> u128 {
     if algorithm.refin ^ algorithm.refout {
         crc = crc.reverse_bits();
     }
@@ -25,7 +25,7 @@ const fn finalize(algorithm: &Algorithm<u128>, mut crc: u128) -> u128 {
     crc ^ algorithm.xorout
 }
 
-const fn update_nolookup(mut crc: u128, algorithm: &Algorithm<u128>, bytes: &[u8]) -> u128 {
+const fn update_nolookup(mut crc: u128, algorithm: Algorithm<u128>, bytes: &[u8]) -> u128 {
     let poly = if algorithm.refin {
         let poly = algorithm.poly.reverse_bits();
         poly >> (128u8 - algorithm.width)
@@ -197,7 +197,7 @@ mod test {
             residue: 0x000000000000000000000,
         };
 
-        let algs_to_test = [&CRC_82_DARC, &CRC_82_DARC_NONREFLEX];
+        let algs_to_test = [CRC_82_DARC, CRC_82_DARC_NONREFLEX];
 
         for alg in algs_to_test {
             for data in data {

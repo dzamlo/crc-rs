@@ -1,27 +1,27 @@
 use crc::*;
 use criterion::{black_box, criterion_group, criterion_main, Criterion, Throughput};
 
-pub const BLUETOOTH: Crc<u8> = Crc::<u8>::new(&CRC_8_BLUETOOTH);
-pub const BLUETOOTH_SLICE16: Crc<Slice16<u8>> = Crc::<Slice16<u8>>::new(&CRC_8_BLUETOOTH);
-pub const BLUETOOTH_BYTEWISE: Crc<Bytewise<u8>> = Crc::<Bytewise<u8>>::new(&CRC_8_BLUETOOTH);
-pub const BLUETOOTH_NOLOOKUP: Crc<NoTable<u8>> = Crc::<NoTable<u8>>::new(&CRC_8_BLUETOOTH);
-pub const X25: Crc<u16> = Crc::<u16>::new(&CRC_16_IBM_SDLC);
-pub const X25_SLICE16: Crc<Slice16<u16>> = Crc::<Slice16<u16>>::new(&CRC_16_IBM_SDLC);
-pub const X25_BYTEWISE: Crc<Bytewise<u16>> = Crc::<Bytewise<u16>>::new(&CRC_16_IBM_SDLC);
-pub const X25_NOLOOKUP: Crc<NoTable<u16>> = Crc::<NoTable<u16>>::new(&CRC_16_IBM_SDLC);
-pub const ISCSI: Crc<u32> = Crc::<u32>::new(&CRC_32_ISCSI);
-pub const ISCSI_SLICE16: Crc<Slice16<u32>> = Crc::<Slice16<u32>>::new(&CRC_32_ISCSI);
-pub const ISCSI_BYTEWISE: Crc<Bytewise<u32>> = Crc::<Bytewise<u32>>::new(&CRC_32_ISCSI);
-pub const ISCSI_NOLOOKUP: Crc<NoTable<u32>> = Crc::<NoTable<u32>>::new(&CRC_32_ISCSI);
-pub const GSM_40: Crc<u64> = Crc::<u64>::new(&CRC_40_GSM);
-pub const ECMA: Crc<u64> = Crc::<u64>::new(&CRC_64_ECMA_182);
-pub const ECMA_SLICE16: Crc<Slice16<u64>> = Crc::<Slice16<u64>>::new(&CRC_64_ECMA_182);
-pub const ECMA_BYTEWISE: Crc<Bytewise<u64>> = Crc::<Bytewise<u64>>::new(&CRC_64_ECMA_182);
-pub const ECMA_NOLOOKUP: Crc<NoTable<u64>> = Crc::<NoTable<u64>>::new(&CRC_64_ECMA_182);
-pub const DARC: Crc<u128> = Crc::<u128>::new(&CRC_82_DARC);
-pub const DARC_SLICE16: Crc<Slice16<u128>> = Crc::<Slice16<u128>>::new(&CRC_82_DARC);
-pub const DARC_BYTEWISE: Crc<Bytewise<u128>> = Crc::<Bytewise<u128>>::new(&CRC_82_DARC);
-pub const DARC_NOLOOKUP: Crc<NoTable<u128>> = Crc::<NoTable<u128>>::new(&CRC_82_DARC);
+pub const BLUETOOTH: Crc<u8> = Crc::<u8>::new(CRC_8_BLUETOOTH);
+pub const BLUETOOTH_SLICE16: Crc<Slice16<u8>> = Crc::<Slice16<u8>>::new(CRC_8_BLUETOOTH);
+pub const BLUETOOTH_BYTEWISE: Crc<Bytewise<u8>> = Crc::<Bytewise<u8>>::new(CRC_8_BLUETOOTH);
+pub const BLUETOOTH_NOLOOKUP: Crc<NoTable<u8>> = Crc::<NoTable<u8>>::new(CRC_8_BLUETOOTH);
+pub const X25: Crc<u16> = Crc::<u16>::new(CRC_16_IBM_SDLC);
+pub const X25_SLICE16: Crc<Slice16<u16>> = Crc::<Slice16<u16>>::new(CRC_16_IBM_SDLC);
+pub const X25_BYTEWISE: Crc<Bytewise<u16>> = Crc::<Bytewise<u16>>::new(CRC_16_IBM_SDLC);
+pub const X25_NOLOOKUP: Crc<NoTable<u16>> = Crc::<NoTable<u16>>::new(CRC_16_IBM_SDLC);
+pub const ISCSI: Crc<u32> = Crc::<u32>::new(CRC_32_ISCSI);
+pub const ISCSI_SLICE16: Crc<Slice16<u32>> = Crc::<Slice16<u32>>::new(CRC_32_ISCSI);
+pub const ISCSI_BYTEWISE: Crc<Bytewise<u32>> = Crc::<Bytewise<u32>>::new(CRC_32_ISCSI);
+pub const ISCSI_NOLOOKUP: Crc<NoTable<u32>> = Crc::<NoTable<u32>>::new(CRC_32_ISCSI);
+pub const GSM_40: Crc<u64> = Crc::<u64>::new(CRC_40_GSM);
+pub const ECMA: Crc<u64> = Crc::<u64>::new(CRC_64_ECMA_182);
+pub const ECMA_SLICE16: Crc<Slice16<u64>> = Crc::<Slice16<u64>>::new(CRC_64_ECMA_182);
+pub const ECMA_BYTEWISE: Crc<Bytewise<u64>> = Crc::<Bytewise<u64>>::new(CRC_64_ECMA_182);
+pub const ECMA_NOLOOKUP: Crc<NoTable<u64>> = Crc::<NoTable<u64>>::new(CRC_64_ECMA_182);
+pub const DARC: Crc<u128> = Crc::<u128>::new(CRC_82_DARC);
+pub const DARC_SLICE16: Crc<Slice16<u128>> = Crc::<Slice16<u128>>::new(CRC_82_DARC);
+pub const DARC_BYTEWISE: Crc<Bytewise<u128>> = Crc::<Bytewise<u128>>::new(CRC_82_DARC);
+pub const DARC_NOLOOKUP: Crc<NoTable<u128>> = Crc::<NoTable<u128>>::new(CRC_82_DARC);
 
 static KB: usize = 1024;
 

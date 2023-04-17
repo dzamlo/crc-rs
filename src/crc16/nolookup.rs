@@ -2,7 +2,7 @@ use crate::crc16::{finalize, init, update_nolookup};
 use crate::{Algorithm, Crc, Digest, NoTable};
 
 impl Crc<NoTable<u16>> {
-    pub const fn new(algorithm: &'static Algorithm<u16>) -> Self {
+    pub const fn new(algorithm: Algorithm<u16>) -> Self {
         Self {
             algorithm,
             table: (),

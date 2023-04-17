@@ -4,7 +4,7 @@
 //! ### Examples
 //! Using a well-known algorithm:
 //! ```rust
-//! const X25: crc::Crc<u16> = crc::Crc::<u16>::new(&crc::CRC_16_IBM_SDLC);
+//! const X25: crc::Crc<u16> = crc::Crc::<u16>::new(crc::CRC_16_IBM_SDLC);
 //! assert_eq!(X25.checksum(b"123456789"), 0x906e);
 //! ```
 //!
@@ -20,7 +20,7 @@
 //!     check: 0xaee7,
 //!     residue: 0x0000
 //! };
-//! let crc = crc::Crc::<u16>::new(&CUSTOM_ALG);
+//! let crc = crc::Crc::<u16>::new(CUSTOM_ALG);
 //! let mut digest = crc.digest();
 //! digest.update(b"123456789");
 //! assert_eq!(digest.finalize(), 0xaee7);
@@ -42,6 +42,7 @@ mod util;
 pub struct Slice16<W: Width>(core::marker::PhantomData<W>);
 
 /// Implementation using a 256 entry lookup table. Use it with `Crc<Bytewise<W>>`
+#[derive(Clone)]
 pub struct Bytewise<W: Width>(core::marker::PhantomData<W>);
 
 /// Implementation using no lookup table. Use it with `Crc<Nolookup<W>>`
@@ -104,7 +105,7 @@ impl Implementation for u128 {
 /// Crc with pluggable implementations ([Nolookup], [Bytewise], [Slice16]).
 /// To choose the default implementation, use the [Width] directly (e.g. `Crc<u32>`).
 pub struct Crc<I: Implementation> {
-    pub algorithm: &'static Algorithm<I::Width>,
+    pub algorithm: Algorithm<I::Width>,
     table: I::Table,
 }
 

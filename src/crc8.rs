@@ -6,7 +6,7 @@ mod default;
 mod nolookup;
 mod slice16;
 
-const fn init(algorithm: &Algorithm<u8>, initial: u8) -> u8 {
+const fn init(algorithm: Algorithm<u8>, initial: u8) -> u8 {
     if algorithm.refin {
         initial.reverse_bits() >> (8u8 - algorithm.width)
     } else {
@@ -14,7 +14,7 @@ const fn init(algorithm: &Algorithm<u8>, initial: u8) -> u8 {
     }
 }
 
-const fn finalize(algorithm: &Algorithm<u8>, mut crc: u8) -> u8 {
+const fn finalize(algorithm: Algorithm<u8>, mut crc: u8) -> u8 {
     if algorithm.refin ^ algorithm.refout {
         crc = crc.reverse_bits();
     }
@@ -24,7 +24,7 @@ const fn finalize(algorithm: &Algorithm<u8>, mut crc: u8) -> u8 {
     crc ^ algorithm.xorout
 }
 
-const fn update_nolookup(mut crc: u8, algorithm: &Algorithm<u8>, bytes: &[u8]) -> u8 {
+const fn update_nolookup(mut crc: u8, algorithm: Algorithm<u8>, bytes: &[u8]) -> u8 {
     let poly = if algorithm.refin {
         let poly = algorithm.poly.reverse_bits();
         poly >> (8u8 - algorithm.width)
@@ -115,7 +115,7 @@ mod test {
             residue: 0x00,
         };
 
-        let algs_to_test = [&CRC_8_BLUETOOTH, &CRC_8_BLUETOOTH_NONREFLEX];
+        let algs_to_test = [CRC_8_BLUETOOTH, CRC_8_BLUETOOTH_NONREFLEX];
 
         for alg in algs_to_test {
             for data in data {
